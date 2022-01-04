@@ -37,12 +37,47 @@ class BlockAggregateResult {
 
 class Web3Multicall {
   static final _address = {
+    // Ethereum mainnet
     BigInt.from(1):
-        EthereumAddress.fromHex("0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696")
+        EthereumAddress.fromHex("0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"),
+    // Ethereum testnet Kovan
+    BigInt.from(42):
+        EthereumAddress.fromHex("0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"),
+    // Ethereum testnet Rinkeby
+    BigInt.from(4):
+        EthereumAddress.fromHex("0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"),
+    // Ethereum testnet Görli
+    BigInt.from(420):
+        EthereumAddress.fromHex("0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"),
+    // Ethereum testnet Ropsten
+    BigInt.from(3):
+        EthereumAddress.fromHex("0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"),
+
+    // BSC mainnet
+    BigInt.from(56):
+        EthereumAddress.fromHex("0xed386Fe855C1EFf2f843B910923Dd8846E45C5A4"),
+    // BSC testnet
+    BigInt.from(97):
+        EthereumAddress.fromHex("0xed386Fe855C1EFf2f843B910923Dd8846E45C5A4"),
+
+    // Polygon(Matic) mainnet
+    BigInt.from(137):
+        EthereumAddress.fromHex("0xed386Fe855C1EFf2f843B910923Dd8846E45C5A4"),
+    // Polygon(Matic) testnet Mumbai
+    BigInt.from(80001):
+        EthereumAddress.fromHex("0xed386Fe855C1EFf2f843B910923Dd8846E45C5A4"),
+
+    // Fantom mainnet
+    BigInt.from(250):
+        EthereumAddress.fromHex("0xD98e3dBE5950Ca8Ce5a4b59630a5652110403E5c"),
   };
 
   static setMulticallAddress(BigInt chainId, EthereumAddress address) {
     _address[chainId] = address;
+  }
+
+  static bool isSuppoted(BigInt chainId) {
+    return _address.containsKey(chainId);
   }
 
   static Future<DeployedContract> getMulticallContractInstance(
