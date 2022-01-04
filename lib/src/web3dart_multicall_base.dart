@@ -47,7 +47,7 @@ class Web3Multicall {
     BigInt.from(4):
         EthereumAddress.fromHex("0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"),
     // Ethereum testnet Görli
-    BigInt.from(420):
+    BigInt.from(5):
         EthereumAddress.fromHex("0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"),
     // Ethereum testnet Ropsten
     BigInt.from(3):
