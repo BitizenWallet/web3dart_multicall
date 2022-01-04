@@ -76,7 +76,7 @@ class Web3Multicall {
     _address[chainId] = address;
   }
 
-  static bool isSuppoted(BigInt chainId) {
+  static bool isSupported(BigInt chainId) {
     return _address.containsKey(chainId);
   }
 
