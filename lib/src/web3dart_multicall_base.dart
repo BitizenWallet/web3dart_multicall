@@ -60,6 +60,13 @@ class Web3Multicall {
     BigInt.from(97):
         EthereumAddress.fromHex("0xed386Fe855C1EFf2f843B910923Dd8846E45C5A4"),
 
+    // HECO mainnet
+    BigInt.from(128):
+        EthereumAddress.fromHex("0x3D776858642919784d4EfC6192E39fA83cC7B028"),
+    // HECO testnet
+    BigInt.from(256):
+        EthereumAddress.fromHex("0x2868Dbd253A3db600e23957cFb8ffecD3899d977"),
+
     // Polygon(Matic) mainnet
     BigInt.from(137):
         EthereumAddress.fromHex("0xed386Fe855C1EFf2f843B910923Dd8846E45C5A4"),

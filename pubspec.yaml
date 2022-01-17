@@ -1,7 +1,6 @@
 name: web3dart_multicall
 description: A starting point for Dart libraries or applications.
-version: 1.0.1
-# homepage: https://www.example.com
+version: 1.0.2
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
