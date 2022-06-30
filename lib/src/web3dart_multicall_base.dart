@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:typed_data';
 import 'package:convert/convert.dart';
 import 'package:synchronized/synchronized.dart';
@@ -37,7 +38,7 @@ class BlockAggregateResult {
 }
 
 class Web3Multicall {
-  static final _rpcToChainId = {};
+  static final HashMap<String, BigInt> _rpcToChainId = HashMap();
 
   static final _lock = Lock();
 
