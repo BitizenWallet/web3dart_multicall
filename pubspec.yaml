@@ -6,6 +6,7 @@ environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
+  synchronized: ^3.0.0+2
   web3dart:
     git:
       url: git@github.com:BitizenWallet/web3dart.git

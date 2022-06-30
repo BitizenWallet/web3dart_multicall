@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:convert/convert.dart';
+import 'package:synchronized/synchronized.dart';
 
 import 'package:web3dart/web3dart.dart';
 
@@ -37,6 +38,8 @@ class BlockAggregateResult {
 
 class Web3Multicall {
   static final _rpcToChainId = {};
+
+  static final _lock = Lock();
 
   static final _address = {
     // Ethereum mainnet
@@ -91,10 +94,12 @@ class Web3Multicall {
 
   static Future<DeployedContract> getMulticallContractInstance(
       Web3Client client) async {
-    if (!_rpcToChainId.containsKey(client.jsonRpc.rpcSeriviceUrl())) {
-      _rpcToChainId[client.jsonRpc.rpcSeriviceUrl()] =
-          await client.getChainId();
-    }
+    await _lock.synchronized(() async {
+      if (!_rpcToChainId.containsKey(client.jsonRpc.rpcSeriviceUrl())) {
+        _rpcToChainId[client.jsonRpc.rpcSeriviceUrl()] =
+            await client.getChainId();
+      }
+    });
     if (!_address.containsKey(_rpcToChainId[client.jsonRpc.rpcSeriviceUrl()])) {
       throw Exception(
           "Can't find a deployed instance, please [setMulticallAddress] before you start");
