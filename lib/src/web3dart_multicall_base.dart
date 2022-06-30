@@ -36,6 +36,8 @@ class BlockAggregateResult {
 }
 
 class Web3Multicall {
+  static final _rpcToChainId = {};
+
   static final _address = {
     // Ethereum mainnet
     BigInt.from(1):
@@ -89,12 +91,16 @@ class Web3Multicall {
 
   static Future<DeployedContract> getMulticallContractInstance(
       Web3Client client) async {
-    final chanId = await client.getChainId();
-    if (!_address.containsKey(chanId)) {
+    if (!_rpcToChainId.containsKey(client.jsonRpc.rpcSeriviceUrl())) {
+      _rpcToChainId[client.jsonRpc.rpcSeriviceUrl()] =
+          await client.getChainId();
+    }
+    if (!_address.containsKey(_rpcToChainId[client.jsonRpc.rpcSeriviceUrl()])) {
       throw Exception(
           "Can't find a deployed instance, please [setMulticallAddress] before you start");
     }
-    return DeployedContract(contractAbi, _address[chanId]!);
+    return DeployedContract(
+        contractAbi, _address[_rpcToChainId[client.jsonRpc.rpcSeriviceUrl()]]!);
   }
 
   static List<dynamic> _encodeCallData(List<Web3MulticallCall> calls) {
